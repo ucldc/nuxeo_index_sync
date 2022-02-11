@@ -9,7 +9,7 @@ See the [Nuxeo reindex documentation](https://doc.nuxeo.com/nxdoc/elasticsearch-
 
 ### Notes from Feb 2022
 
-We ran it in the browser using the `SF UI > Admin center > Elasticsearch > Admin` interface.
+We ran it from the browser using the `SF UI > Admin center > Elasticsearch > Admin` interface.
 
 We needed to temporarily increase the size of our AWS OpenSearch cluster instance types while running the reindex. This was necessary because with the regular `t3.small.search` instance we were using, we were getting `429 slow down` errors from ElasticSearch. Memory and disk size were fine, so we just upped the instance size to `m5.xlarge.search`, which has 4 vCPUs rather than 2 vCPUs.
 
@@ -22,7 +22,7 @@ and
 > 2022-02-08T22:16:41,287 ERROR [Nuxeo-Work-elasticSearchIndexing-1095] [org.nuxeo.ecm.core.work.WorkManagerImpl] Uncaught error on thread: Nuxeo-Work-elasticSearchIndexing-1095, current work might be lost, WorkManager metrics might be corrupted.
 org.nuxeo.ecm.core.api.NuxeoException: Work failed after 1 retry, class=class org.nuxeo.elasticsearch.work.BucketIndexingWorker id=758511973539799.1167467553 category=elasticSearchIndexing title= ElasticSearch bucket indexer size 250
 
-which I think explains why there were still hundreds of records missing from elasticsearch after the reindex (see below).
+which I think explains why there were still hundreds of records missing from elasticsearch after the reindex (see below). I guess whole batches of records got dropped when the indexer encountered these errors (?).
 
 
 ## run the nuxeo esync tool
