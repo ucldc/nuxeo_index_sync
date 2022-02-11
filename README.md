@@ -37,11 +37,12 @@ See `nuxeo-esync-20220209.txt` for the example output.
 
 ## run scripts to get still missing records into elasticsearch
 
-Sort of a hacky workaround to trigger an elasticsearch index of the records that got skipped by the full reindex. This way we don't have to actually work figure out the index rebuild errors in code we didn't write %-)
+Sort of a hacky workaround to trigger an elasticsearch index of the records that got skipped by the full reindex. This way we don't have to actually work figure out the index rebuild errors from running code that we didn't write %-)
 
 ### install python packages
 
 `$ pip install -r requirements.txt`
+
 `$ pip install https://github.com/ucldc/pynux/tarball/master --upgrade`
 
 ### create a list of records to be updated based on the output from the esync tool
